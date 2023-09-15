@@ -11,6 +11,16 @@ function solution(num_list, n) {
     return answer;
 }
 
+// function solution(num_list, n) {
+//     var answer = [];
+
+//     while(num_list.length) {
+//         answer.push(num_list.splice(0,n));
+//     }
+
+//     return answer;
+// }
+
 // n의 개수가 주어진다.
 // num_list의 배열을 n의 값만큼 묶어서 2차 배열로 만든다.
 // map? reduce? filter? slice?
