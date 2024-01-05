@@ -12,28 +12,3 @@ function solution(k, score) {
     }
     return answer;
 }
-
-function solution(k, score) {
-    let answer = [];
-    let tempArr = [];
-
-
-    for(let i=0; i<score.length; i++) {
-
-        tempArr.push(score[i])
-
-        tempArr.sort((a, b)=>a-b);
- 
-        if(tempArr.length > k) {
-            if(tempArr[0] < score[i]) {
-                tempArr.shift();
-            } else if(tempArr[0] >= score[i]) {
-                tempArr.shift();
-            }
-        }
-
-        answer.push(tempArr[0])
-    }
-
-    return answer;
-}
