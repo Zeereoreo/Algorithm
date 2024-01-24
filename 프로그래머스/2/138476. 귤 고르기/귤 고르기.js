@@ -11,7 +11,7 @@ function solution(k, tangerine) {
     let map = new Map()
     for(let i = 0; i<tangerine.length; i++){
         const target = map.get(tangerine[i])
-            map.set(tangerine[i], target ? target + 1 : 1);
+            map.set(tangerine[i], (target||0) + 1);
         }
     let arr = [...map].sort((a,b) => b[1] - a[1])
     
