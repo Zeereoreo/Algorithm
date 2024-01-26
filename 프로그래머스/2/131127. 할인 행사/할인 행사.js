@@ -1,23 +1,29 @@
 function solution(want, number, discount) {
-  let result = 0;
-  discount.forEach((v, i) => {
-    let copy = discount.slice(i, i + 10);
-    if (copy.length < 10) {
-      return result;
+  let answer = 0;
+  let map = new Map()  
+    for(let i = 0; i<want.length; i++){
+      map.set(want[i], number[i])
     }
+    for(let i = 0; i<discount.length; i++){
+        let dMap = new Map()
+        let copy = discount.slice(i, i + 10);
+        for (let j = 0; j < copy.length; j++) {
+            dMap.set(copy[j], (dMap.get(copy[j]) || 0) + 1);
+        }
+        
+        let isSame = true;
+        for(let [key,value] of map){
+            if(dMap.get(key) !== value){
+                isSame = false;
+                break;
+            }
+        }
+        
+        if(isSame) answer++
+        
 
-    let flag = 0;
-    for (let j = 0; j < want.length; j++) {
-      if (copy.filter((el) => el == want[j]).length == number[j]) {
-        flag++;
-      } else {
-        break;
-      }
     }
-    if (flag == want.length) {
-      result++;
-    }
-  });
-
-  return result;
+    
+    
+  return answer;
 }
