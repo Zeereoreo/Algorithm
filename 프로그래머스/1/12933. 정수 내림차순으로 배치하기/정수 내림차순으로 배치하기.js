@@ -1,3 +1,5 @@
 function solution(n) {
-    return +(String(n).split("").sort((a,b) => b-a).join(""))
+    var answer = 0;
+    n = String(n).split("").sort((a,b) => b-a).join("")
+    return Number(n);
 }
