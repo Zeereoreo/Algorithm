@@ -1,11 +1,12 @@
 function solution(s){
-    let p = 0;
-    let y = 0;
-
-    for(let i = 0; i<s.length; i++){
+    let pstr = 0;
+    let sstr = 0;
+    for(let i =0 ; i<s.length; i++){
+        if(s[i].includes("p") || s[i].includes("P")) pstr++
+        else if(s[i].includes("y") || s[i].includes("Y")) sstr++
         
-        if(s[i] === "p" || s[i] === "P") p++
-        else if (s[i] === "y" || s[i] === "Y") y++
     }
-    return (p  === y ) ? true : false;
+    
+    
+    return pstr === sstr ? true : false
 }
