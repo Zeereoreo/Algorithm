@@ -1,3 +1,5 @@
 function solution(n) {
-    return String(n).split("").reverse().map(el=>+(el))
+    var answer = [];
+    n = String(n).split("").map(el=>Number(el)).reverse()
+    return n;
 }
