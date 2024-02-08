@@ -1,5 +1,5 @@
-function solution(n)
-{
-    
-    return String(n).split("").map(el=>+el).reduce((a,c)=>a+c);
+function solution(n){
+    let answer = 0;
+    n = [...String(n)]
+    return n.reduce((a,c) => ~~a+~~c,0)
 }
