@@ -1,9 +1,6 @@
 function solution(x) {
     var answer = true;
-    let X = String(x)
-    let a = 0;
-    for(let i = 0; i<X.length; i++){
-        a += +X[i];
-    }
-    return (x%a === 0) ? true : false
+    let n = 0;
+    n = String(x).split("").reduce((a,c) => a +(+c),0)
+    return x%n === 0 ? true : false;
 }
