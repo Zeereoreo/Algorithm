@@ -1,9 +1,8 @@
 function solution(arr) {
     var answer = [];
-    if(arr.length === 1){
-        return [-1]
+    let a = Math.min(...arr)
+    for(let i = 0; i<arr.length; i++){
+        if(arr[i] !== a) answer.push(arr[i])
     }
-    let min = Math.min(...arr);
-    
-    return arr.filter(el => el !== min);
+    return (answer.length === 0) ? [-1] : answer;
 }
