@@ -1,19 +1,13 @@
 function solution(left, right) {
     var answer = 0;
-    let arr = [];
-    for(let i = left; i<= right; i++){
+    for(let i = left; i<=right; i++){
+        let div = 0;
         for(let j = 1; j<=i; j++){
-            if(i%j === 0){
-                arr.push(j)
-            }
+            if(i%j === 0) div++;
+            
         }
-        if(arr.length%2 === 0){
-            answer += i
-            arr = [];
-        }else {
-            answer -= i
-            arr = [];
-        }
+        if(div%2 === 0) answer += i
+        else answer -= i
     }
     return answer;
 }
