@@ -1,9 +1,13 @@
 function solution(s) {
-    return s
-        .split(" ")
-        .map((el) => 
-             [...el].map((e,i) => {
-        if(i%2 === 0) return e.toUpperCase()
-        else return e.toLowerCase()
-    }).join("")).join(" ")
+    var answer = '';
+    let a = s.split(" ")
+    for(let i = 0; i<a.length; i++){
+        for(let j = 0; j<a[i].length; j++){
+            if(j%2 === 0) answer += a[i][j].toUpperCase()
+            else answer += a[i][j].toLowerCase()
+        }
+        answer += " "
+    }
+   
+    return answer.slice(0,answer.length-1);
 }
