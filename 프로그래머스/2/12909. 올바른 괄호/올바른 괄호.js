@@ -7,7 +7,7 @@ function solution(s){
             stack --;
         }
         if(stack < 0){
-            return false
+            return false;
         }
     }
 
