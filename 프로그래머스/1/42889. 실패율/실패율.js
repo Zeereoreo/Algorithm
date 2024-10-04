@@ -1,10 +1,22 @@
 function solution(N, stages) {
     var answer = [];
-    for(let i = 1; i<=N; i++){
-        let reach = stages.filter(e => e >= i).length;
-        let cur = stages.filter(e => e === i).length;
-        answer.push([i, cur/reach]);
+    let challenger = new Array(N + 2).fill(0)
+    for(const stage of stages){
+        challenger[stage] +=1;
     }
-    answer.sort((a,b) => b[1] - a[1]);
-    return answer.map(e => e[0]);
+    // 도전자 수를 구한다.
+    let fail = {};
+    let total = stages.length;
+    for(let i = 1; i<=N; i++){
+        if(challenger[i] === 0){
+            fail[i] = 0;
+            continue;
+        }
+        fail[i] = challenger[i]/total;
+        total-=challenger[i];
+    }
+    let result = Object.entries(fail).sort((a,b) => b[1] - a[1])
+
+    return result.map((e) => Number(e[0]))
+    
 }
