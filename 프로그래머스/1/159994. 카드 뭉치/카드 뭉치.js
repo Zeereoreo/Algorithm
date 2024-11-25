@@ -1,32 +1,48 @@
-// function solution(cards1, cards2, goal) {
-//     var answer = '';
-//     let cardIdx1 = 0;
-//     let cardIdx2 = 0;
+class Queue {
+    items = [];
+    front = 0;
+    rear = 0;
     
-//     goal.forEach((el) => {
-//         if(cards1[cardIdx1] === el){
-//             cardIdx1 ++
-//         } else if(cards2[cardIdx2] === el){
-//             cardIdx2 ++
-//         } else {
-//             return "No";
-//         }
-//     })
-//     return "Yes";
-// }
+    constructor(arr){
+        this.items = arr;
+        this.rear = arr.length;
+    }
+    
+    push(item){
+        this.items.push(item);
+        this.rear++;
+    }
+    
+    pop(){
+        return this.items[this.front++]
+    }
+    
+    first(){
+        return this.items[this.front]
+    }
+    
+    isEmpty(){
+        return this.front===this.rear
+    }
+}
 
 function solution(cards1, cards2, goal) {
-  let idx1 = 0;
-  let idx2 = 0;
-  for (let word of goal) {
-
-    if (cards1[idx1] === word) idx1++;
-
-    else if (cards2[idx2] === word) idx2++;
+    var answer = '';
     
-    else return "No";
-  }
+    cards1 = new Queue(cards1);
+    cards2 = new Queue(cards2);
+    goal = new Queue(goal)
 
-
-  return "Yes";
+    while(!goal.isEmpty()){
+        if(!cards1.isEmpty() && cards1.first() === goal.first()){
+            cards1.pop()
+            goal.pop()
+        }else if(!cards2.isEmpty() && cards2.first() === goal.first()){
+            cards2.pop()
+            goal.pop()
+        }else{
+            break;
+        }
+    }
+    return goal.isEmpty() ? "Yes" : "No";
 }
