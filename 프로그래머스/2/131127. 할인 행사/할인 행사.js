@@ -1,29 +1,26 @@
 function solution(want, number, discount) {
-  let answer = 0;
-  let map = new Map()  
+    var answer = 0;
+    
+    const wantObj = {};
     for(let i = 0; i<want.length; i++){
-      map.set(want[i], number[i])
+        wantObj[want[i]] = number[i]
     }
-    for(let i = 0; i<discount.length; i++){
-        let dMap = new Map()
-        let copy = discount.slice(i, i + 10);
-        for (let j = 0; j < copy.length; j++) {
-            dMap.set(copy[j], (dMap.get(copy[j]) || 0) + 1);
+    for(let i = 0; i<discount.length - 9; i++){
+        const dObj={}
+        for(let j = i; j< i+10; j++){
+            if(wantObj[discount[j]]){
+                dObj[discount[j]] =( dObj[discount[j]] || 0) +1
+            }
         }
-        
         let isSame = true;
-        for(let [key,value] of map){
-            if(dMap.get(key) !== value){
-                isSame = false;
+        for(let k in wantObj){
+            // console.log(wantObj[k])
+            if(dObj[k] !== wantObj[k]){
+                isSame=false;
                 break;
             }
         }
-        
         if(isSame) answer++
-        
-
     }
-    
-    
-  return answer;
+    return answer;
 }
