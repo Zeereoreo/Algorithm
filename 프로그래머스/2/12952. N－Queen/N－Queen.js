@@ -1,29 +1,19 @@
+function search(n,y,width,diagonal1,diagonal2){
+    let answer = 0;
+    if(y===n) answer+=1
+    else{
+        for(let i = 0; i<n; i++){
+            if(width[i] || diagonal1[i+y] || diagonal2[i-y+n]) continue;
+            width[i] = diagonal1[i+y] = diagonal2[i-y+n] = true;
+            answer += search(n,y+1,width,diagonal1,diagonal2)
+            width[i] = diagonal1[i+y] = diagonal2[i-y+n] = false
+        }
+    }
+    // console.log(n,y,width,diagonal1,diagonal2)
+    return answer
+}
+
 function solution(n) {
-  let answer = 0;
-  
-  const dfs = (board, row) => {
-    if(row === n) answer++;
-    else {
-      for(let i = 1; i <= n; i++) {
-        board[row+1] = i;
-        if(isValid(board, row+1)) dfs(board, row+1);
-      }
-    }
-  }
-  
-  const isValid = (board, row) => {
-    for(let i = 1; i < row; i++) {
-      if(board[i] === board[row]) return false;
-      if(Math.abs(board[i] - board[row]) === Math.abs(i - row)) return false;
-    }
-    return true;
-  }
-  
-  for(let i = 1; i <= n; i++) {
-    const board = new Array(n+1).fill(0);
-    board[1] = i;
-    dfs(board, 1);
-  }
-  
-  return answer;
+    var answer = search(n,0,Array(n).fill(false),Array(n*2).fill(false),Array(n*2).fill(false))
+    return answer;
 }
